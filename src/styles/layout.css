@@ -1,0 +1,9 @@
+.input-form {
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}
+
+.button-box {
+    box-sizing: border-box;
+    width: 100%;
+}

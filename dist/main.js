@@ -26947,7 +26947,7 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(LoginModal).call(this, props));
     _this.toggle = _this.toggle.bind(_assertThisInitialized(_this));
-    _this.loginValidation = _this.loginValidation.bind(_assertThisInitialized(_this));
+    _this.onLoginSubmit = _this.onLoginSubmit.bind(_assertThisInitialized(_this));
     _this.loginOnChange = _this.loginOnChange.bind(_assertThisInitialized(_this));
     _this.passwordOnChange = _this.passwordOnChange.bind(_assertThisInitialized(_this));
     _this.state = {
@@ -26982,9 +26982,8 @@ function (_Component) {
       });
     }
   }, {
-    key: "loginValidation",
-    value: function loginValidation(event) {
-      alert("".concat(this.state.login, " ").concat(this.state.password));
+    key: "onLoginSubmit",
+    value: function onLoginSubmit(event) {
       var options = {
         method: "POST",
         headers: {
@@ -27013,24 +27012,28 @@ function (_Component) {
     key: "renderLoginForm",
     value: function renderLoginForm() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        id: "loginForm",
+        id: "login-form",
         method: "post",
-        onSubmit: this.loginValidation
+        onSubmit: this.onLoginSubmit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "login-form",
         className: "input-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_InputFormRow_js__WEBPACK_IMPORTED_MODULE_1__["InputFormRow"], {
+        id: "auth-login",
         onChange: this.loginOnChange,
         label: "\u041B\u043E\u0433\u0438\u043D",
         type: "text"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_InputFormRow_js__WEBPACK_IMPORTED_MODULE_1__["InputFormRow"], {
+        id: "auth-password",
         onChange: this.passwordOnChange,
         label: "\u041F\u0430\u0440\u043E\u043B\u044C",
         type: "password"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Container"], {
         className: "button-box"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+        color: "primary",
         type: "submit"
-      }, "\u0412\u043E\u0439\u0442\u0438"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, "\u0412\u043E\u0439\u0442\u0438"), ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Button"], {
         type: "button",
         onClick: this.props.toggle
       }, "\u041E\u0442\u043C\u0435\u043D\u0430")));
@@ -27103,7 +27106,7 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(SignupModal).call(this, props));
     _this.toggle = _this.toggle.bind(_assertThisInitialized(_this));
-    _this.dataValidation = _this.dataValidation.bind(_assertThisInitialized(_this));
+    _this.onRegistrationSubmit = _this.onRegistrationSubmit.bind(_assertThisInitialized(_this));
     _this.loginOnChange = _this.loginOnChange.bind(_assertThisInitialized(_this));
     _this.passwordOnChange = _this.passwordOnChange.bind(_assertThisInitialized(_this));
     _this.emailOnChange = _this.emailOnChange.bind(_assertThisInitialized(_this));
@@ -27156,38 +27159,70 @@ function (_Component) {
       });
     }
   }, {
-    key: "dataValidation",
-    value: function dataValidation(event) {}
+    key: "onRegistrationSubmit",
+    value: function onRegistrationSubmit(event) {
+      var options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          'login': this.state.login,
+          'password': this.state.password,
+          'email': this.state.email,
+          'phone': this.state.phone
+        })
+      };
+      fetch('/v1/users/', options).then(function (response) {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("\u0417\u0430\u043F\u0440\u043E\u0441 \u0437\u0430\u0432\u0435\u0440\u0448\u0438\u043B\u0441\u044F \u043D\u0435\u0443\u0441\u043F\u0435\u0448\u043D\u043E ".concat(response.status, " ").concat(response.statusText));
+        }
+      }).then(function (userData) {
+        console.log(userData.id);
+        return userData.id;
+      })["catch"](function (error) {
+        alert(error);
+      });
+      event.preventDefault();
+    }
   }, {
     key: "renderRegistrationForm",
     value: function renderRegistrationForm() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        id: "registrationForm",
+        id: "registration-form",
         method: "post",
-        onSubmit: this.dataValidation
+        onSubmit: this.onRegistrationSubmit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "registration-form",
         className: "input-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_InputFormRow_js__WEBPACK_IMPORTED_MODULE_1__["InputFormRow"], {
+        id: "reg-login",
         onChange: this.loginOnChange,
         label: "\u041B\u043E\u0433\u0438\u043D",
         type: "text"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_InputFormRow_js__WEBPACK_IMPORTED_MODULE_1__["InputFormRow"], {
+        id: "reg-password",
         onChange: this.passwordOnChange,
         label: "\u041F\u0430\u0440\u043E\u043B\u044C",
         type: "password"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_InputFormRow_js__WEBPACK_IMPORTED_MODULE_1__["InputFormRow"], {
+        id: "reg-email",
         onChange: this.emailOnChange,
         label: "Email",
         type: "email"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_InputFormRow_js__WEBPACK_IMPORTED_MODULE_1__["InputFormRow"], {
+        id: "reg-phone",
         onChange: this.phoneOnChange,
         label: "\u041D\u043E\u043C\u0435\u0440 \u0442\u0435\u043B\u0435\u0444\u043E\u043D\u0430",
         type: "tel"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Container"], {
         className: "button-box"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+        color: "primary",
         type: "submit"
-      }, "\u0417\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, "\u0417\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F"), ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Button"], {
         type: "button",
         onClick: this.props.toggle
       }, "\u041E\u0442\u043C\u0435\u043D\u0430")));

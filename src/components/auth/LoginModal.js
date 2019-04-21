@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { InputFormRow } from '../InputFormRow.js'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, Row, Col, Container } from 'reactstrap';
 
 export class LoginModal extends Component {
     constructor(props) {
         super(props);
 
         this.toggle = this.toggle.bind(this);
-        this.loginValidation = this.loginValidation.bind(this);
+        this.onLoginSubmit = this.onLoginSubmit.bind(this);
         this.loginOnChange = this.loginOnChange.bind(this);
         this.passwordOnChange = this.passwordOnChange.bind(this);
         this.state = {
@@ -30,8 +30,7 @@ export class LoginModal extends Component {
         this.setState({ password: e.target.value });
     }
 
-    loginValidation(event) {
-        alert(`${this.state.login} ${this.state.password}`);
+    onLoginSubmit(event) {
         const options = {
             method: "POST",
             headers: {
@@ -64,15 +63,15 @@ export class LoginModal extends Component {
 
     renderLoginForm() {
         return (
-            <form id="loginForm" method="post" onSubmit={this.loginValidation}>
-                <div className="input-form">
-                    <InputFormRow onChange={this.loginOnChange} label="Логин" type="text"/>
-                    <InputFormRow onChange={this.passwordOnChange} label="Пароль" type="password"/>
+            <form id="login-form" method="post" onSubmit={this.onLoginSubmit}>
+                <div id="login-form" className="input-form">
+                    <InputFormRow id="auth-login" onChange={this.loginOnChange} label="Логин" type="text"/>
+                    <InputFormRow id="auth-password" onChange={this.passwordOnChange} label="Пароль" type="password"/>
                 </div>
-                <div className="button-box">
-                    <button type="submit">Войти</button>
-                    <button type="button" onClick={this.props.toggle}>Отмена</button>
-                </div>
+                <Container className="button-box">
+                    <Button color="primary" type="submit">Войти</Button>{' '}
+                    <Button type="button" onClick={this.props.toggle}>Отмена</Button>
+                </Container>
             </form>
         )
     };
