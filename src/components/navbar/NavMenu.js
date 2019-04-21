@@ -3,9 +3,11 @@ import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLi
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { InputFormRow } from '../InputFormRow.js'
+import { LoginModal } from "../auth/LoginModal";
+import { SignupModal } from "../auth/SignupModal";
 
 export class NavMenu extends Component {
-    // static displayName = NavMenu.name;
+    static displayName = NavMenu.name;
 
     constructor (props) {
         super(props);
@@ -13,11 +15,12 @@ export class NavMenu extends Component {
         this.toggleNavbar = this.toggleNavbar.bind(this);
         this.toggleSignIn = this.toggleSignIn.bind(this);
         this.toggleSignUp = this.toggleSignUp.bind(this);
+
         this.state = {
             isModalOpened: false,
             collapsed: true,
             siModal: false,
-            suModal: false
+            suModal: false,
         };
     };
 
@@ -34,33 +37,13 @@ export class NavMenu extends Component {
 
     renderSignInModal() {
         return (
-            <Modal isOpen={this.state.siModal} toggle={this.toggleSignIn} className={this.props.className}>
-                <ModalHeader toggle={this.toggleSignIn}>Sign In</ModalHeader>
-                <ModalBody>
-                    <InputFormRow label="Login" type="text"/>
-                    <InputFormRow label="Password" type="password"/>
-                </ModalBody>
-                <ModalFooter>
-                    <Button color="primary" onClick={this.toggleSignIn}>Sign In</Button>{' '}
-                    <Button color="secondary" onClick={this.toggleSignIn}>Cancel</Button>
-                </ModalFooter>
-            </Modal>
+            <LoginModal isOpen={this.state.siModal} toggle={this.toggleSignIn} />
         )
     }
 
     renderSignUpModal() {
         return (
-            <Modal isOpen={this.state.suModal} toggle={this.toggleSignUp} className={this.props.className}>
-                <ModalHeader toggle={this.toggleSignUp}>Sign Up</ModalHeader>
-                <ModalBody>
-                    <InputFormRow label="Login" type="text"/>
-                    <InputFormRow label="Password" type="password"/>
-                </ModalBody>
-                <ModalFooter>
-                    <Button color="primary" onClick={this.toggleSignUp}>Sign Up</Button>{' '}
-                    <Button color="secondary" onClick={this.toggleSignUp}>Cancel</Button>
-                </ModalFooter>
-            </Modal>
+            <SignupModal isOpen={this.state.suModal} toggle={this.toggleSignUp} />
         )
     }
 
@@ -82,11 +65,11 @@ export class NavMenu extends Component {
                             <ul className="navbar-nav flex-grow">
                                 <NavItem>
                                     {siModal && this.renderSignInModal()}
-                                    <NavLink tag={Link} className="text-dark" to="/login" onClick={this.toggleSignIn}>Sign in</NavLink>
+                                    <NavLink tag={Link} className="text-dark" to="/" onClick={this.toggleSignIn}>Войти</NavLink>
                                 </NavItem>
                                 <NavItem>
                                     {suModal && this.renderSignUpModal()}
-                                    <NavLink tag={Link} className="text-dark" to="/registration" onClick={this.toggleSignUp}>Sign up</NavLink>
+                                    <NavLink tag={Link} className="text-dark" to="/" onClick={this.toggleSignUp}>Зарегистрироваться</NavLink>
                                 </NavItem>
                             </ul>
                         </Collapse>
