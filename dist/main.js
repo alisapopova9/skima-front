@@ -26984,25 +26984,31 @@ function (_Component) {
   }, {
     key: "onLoginSubmit",
     value: function onLoginSubmit(event) {
+      var _this2 = this;
+
       var options = {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json" // "Authorization": "Barear " + localStorage.getItem("token")
+
         },
         body: JSON.stringify({
-          'login': this.state.login,
-          'password': this.state.password
+          "login": this.state.login,
+          "password": this.state.password
         })
       };
       fetch('/v1/auth/tokens/', options).then(function (response) {
+        // console.log(response.body);
         if (response.ok) {
           return response.json();
         } else {
           throw new Error("\u0417\u0430\u043F\u0440\u043E\u0441 \u0437\u0430\u0432\u0435\u0440\u0448\u0438\u043B\u0441\u044F \u043D\u0435\u0443\u0441\u043F\u0435\u0448\u043D\u043E ".concat(response.status, " ").concat(response.statusText));
         }
       }).then(function (userData) {
-        console.log(userData.token);
-        return userData.token;
+        console.log(userData.token); // localStorage.setItem("token");
+
+        _this2.props.toggle(); // return userData.token;
+
       })["catch"](function (error) {
         alert(error);
       });
@@ -27031,9 +27037,11 @@ function (_Component) {
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Container"], {
         className: "button-box"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+        className: "gapr-15",
         color: "primary",
         type: "submit"
-      }, "\u0412\u043E\u0439\u0442\u0438"), ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+      }, "\u0412\u043E\u0439\u0442\u0438"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+        className: "gapr-15",
         type: "button",
         onClick: this.props.toggle
       }, "\u041E\u0442\u043C\u0435\u043D\u0430")));
@@ -27107,12 +27115,17 @@ function (_Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(SignupModal).call(this, props));
     _this.toggle = _this.toggle.bind(_assertThisInitialized(_this));
     _this.onRegistrationSubmit = _this.onRegistrationSubmit.bind(_assertThisInitialized(_this));
+    _this.firstnameOnChange = _this.firstnameOnChange.bind(_assertThisInitialized(_this));
+    _this.lastnameOnChange = _this.lastnameOnChange.bind(_assertThisInitialized(_this));
     _this.loginOnChange = _this.loginOnChange.bind(_assertThisInitialized(_this));
     _this.passwordOnChange = _this.passwordOnChange.bind(_assertThisInitialized(_this));
     _this.emailOnChange = _this.emailOnChange.bind(_assertThisInitialized(_this));
     _this.phoneOnChange = _this.phoneOnChange.bind(_assertThisInitialized(_this));
     _this.state = {
       isOpen: false,
+      validationState: false,
+      firstname: '',
+      lastname: '',
       login: '',
       password: '',
       email: '',
@@ -27128,6 +27141,20 @@ function (_Component) {
         return {
           isOpen: !prevState.isOpen
         };
+      });
+    }
+  }, {
+    key: "firstnameOnChange",
+    value: function firstnameOnChange(e) {
+      this.setState({
+        firstname: e.target.value
+      });
+    }
+  }, {
+    key: "lastnameOnChange",
+    value: function lastnameOnChange(e) {
+      this.setState({
+        lastname: e.target.value
       });
     }
   }, {
@@ -27161,12 +27188,16 @@ function (_Component) {
   }, {
     key: "onRegistrationSubmit",
     value: function onRegistrationSubmit(event) {
+      var _this2 = this;
+
       var options = {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
+          'firstname': this.state.firstname,
+          'lastname': this.state.lastname,
           'login': this.state.login,
           'password': this.state.password,
           'email': this.state.email,
@@ -27175,14 +27206,26 @@ function (_Component) {
       };
       fetch('/v1/users/', options).then(function (response) {
         if (response.ok) {
+          // console.log(response);
           return response.json();
         } else {
           throw new Error("\u0417\u0430\u043F\u0440\u043E\u0441 \u0437\u0430\u0432\u0435\u0440\u0448\u0438\u043B\u0441\u044F \u043D\u0435\u0443\u0441\u043F\u0435\u0448\u043D\u043E ".concat(response.status, " ").concat(response.statusText));
         }
       }).then(function (userData) {
-        console.log(userData.id);
+        // console.log(userData);
+        _this2.setState({
+          validationState: true,
+          isOpen: false
+        });
+
+        _this2.props.toggle();
+
         return userData.id;
       })["catch"](function (error) {
+        _this2.setState({
+          validationState: false
+        });
+
         alert(error);
       });
       event.preventDefault();
@@ -27198,6 +27241,16 @@ function (_Component) {
         id: "registration-form",
         className: "input-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_InputFormRow_js__WEBPACK_IMPORTED_MODULE_1__["InputFormRow"], {
+        id: "reg-firstname",
+        onChange: this.firstnameOnChange,
+        label: "\u0418\u043C\u044F",
+        type: "text"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_InputFormRow_js__WEBPACK_IMPORTED_MODULE_1__["InputFormRow"], {
+        id: "reg-lastname",
+        onChange: this.lastnameOnChange,
+        label: "\u0424\u0430\u043C\u0438\u043B\u0438\u044F",
+        type: "text"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_InputFormRow_js__WEBPACK_IMPORTED_MODULE_1__["InputFormRow"], {
         id: "reg-login",
         onChange: this.loginOnChange,
         label: "\u041B\u043E\u0433\u0438\u043D",
@@ -27220,9 +27273,11 @@ function (_Component) {
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Container"], {
         className: "button-box"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+        className: "gapr-15",
         color: "primary",
         type: "submit"
-      }, "\u0417\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F"), ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+      }, "\u0417\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+        className: "gapr-15",
         type: "button",
         onClick: this.props.toggle
       }, "\u041E\u0442\u043C\u0435\u043D\u0430")));

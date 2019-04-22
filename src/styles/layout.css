@@ -7,3 +7,7 @@
     box-sizing: border-box;
     width: 100%;
 }
+
+.gapr-15:not(:last-of-type) {
+    margin-right: 15px;
+}

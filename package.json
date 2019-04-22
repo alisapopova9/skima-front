@@ -7,7 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode production",
-    "dev": "webpack --mode development"
+    "dev": "webpack --mode development",
+    "start": "webpack-dev-server --mode development --open --hot --content-base ./dist --disableHostCheck"
   },
   "repository": {
     "type": "git",
@@ -29,7 +30,8 @@
     "babel-loader": "^8.0.0",
     "babel-preset-react": "^6.24.1",
     "webpack": "^4.30.0",
-    "webpack-cli": "^3.3.0"
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.3.1"
   },
   "dependencies": {
     "@babel/core": "^7.0.0",

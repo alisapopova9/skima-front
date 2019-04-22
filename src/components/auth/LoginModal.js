@@ -34,16 +34,17 @@ export class LoginModal extends Component {
         const options = {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                // "Authorization": "Barear " + localStorage.getItem("token")
             },
             body:
                 JSON.stringify({
-                    'login': this.state.login,
-                    'password': this.state.password
-                })
+                    "login": this.state.login,
+                    "password": this.state.password})
         };
-        fetch('/v1/auth/tokens/', options)
-            .then(function (response) {
+        fetch(`https://www.skima.cf/v1/auth/tokens/`, options)
+            .then(response => {
+                // console.log(response.body);
                 if (response.ok) {
                     return response.json();
                 }
@@ -51,11 +52,13 @@ export class LoginModal extends Component {
                     throw new Error(`Запрос завершился неуспешно ${response.status} ${response.statusText}`);
                 }
             })
-            .then(function (userData) {
+            .then(userData => {
                 console.log(userData.token);
-                return userData.token;
+                // localStorage.setItem("token");
+                this.props.toggle();
+                // return userData.token;
             })
-            .catch(function (error) {
+            .catch(error => {
                 alert(error);
             });
         event.preventDefault();
@@ -69,8 +72,8 @@ export class LoginModal extends Component {
                     <InputFormRow id="auth-password" onChange={this.passwordOnChange} label="Пароль" type="password"/>
                 </div>
                 <Container className="button-box">
-                    <Button color="primary" type="submit">Войти</Button>{' '}
-                    <Button type="button" onClick={this.props.toggle}>Отмена</Button>
+                    <Button className="gapr-15" color="primary" type="submit">Войти</Button>
+                    <Button className="gapr-15" type="button" onClick={this.props.toggle}>Отмена</Button>
                 </Container>
             </form>
         )

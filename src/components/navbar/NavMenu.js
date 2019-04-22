@@ -71,6 +71,9 @@ export class NavMenu extends Component {
                                     {suModal && this.renderSignUpModal()}
                                     <NavLink tag={Link} className="text-dark" to="/" onClick={this.toggleSignUp}>Зарегистрироваться</NavLink>
                                 </NavItem>
+                                <NavItem>
+                                    <NavLink tag={Link} className="text-dark" to="/" onClick={this.toggleSignUp}>Тест123</NavLink>
+                                </NavItem>
                             </ul>
                         </Collapse>
                     </Container>

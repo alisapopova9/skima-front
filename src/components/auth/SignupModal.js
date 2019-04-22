@@ -8,12 +8,17 @@ export class SignupModal extends Component {
 
         this.toggle = this.toggle.bind(this);
         this.onRegistrationSubmit = this.onRegistrationSubmit.bind(this);
+        this.firstnameOnChange = this.firstnameOnChange.bind(this);
+        this.lastnameOnChange = this.lastnameOnChange.bind(this);
         this.loginOnChange = this.loginOnChange.bind(this);
         this.passwordOnChange = this.passwordOnChange.bind(this);
         this.emailOnChange = this.emailOnChange.bind(this);
         this.phoneOnChange = this.phoneOnChange.bind(this);
         this.state = {
             isOpen: false,
+            validationState: false,
+            firstname: '',
+            lastname: '',
             login: '',
             password: '',
             email: '',
@@ -27,6 +32,12 @@ export class SignupModal extends Component {
         }))
     };
 
+    firstnameOnChange(e) {
+        this.setState({ firstname: e.target.value });
+    };
+    lastnameOnChange(e) {
+        this.setState({ lastname: e.target.value });
+    };
     loginOnChange(e) {
         this.setState({ login: e.target.value });
     };
@@ -38,7 +49,7 @@ export class SignupModal extends Component {
     };
     phoneOnChange(e) {
         this.setState({ phone: e.target.value });
-    }
+    };
 
     onRegistrationSubmit(event) {
         const options = {
@@ -48,6 +59,8 @@ export class SignupModal extends Component {
             },
             body:
                 JSON.stringify({
+                    'firstname': this.state.firstname,
+                    'lastname': this.state.lastname,
                     'login': this.state.login,
                     'password': this.state.password,
                     'email': this.state.email,
@@ -58,17 +71,21 @@ export class SignupModal extends Component {
         fetch('/v1/users/', options)
             .then(function (response) {
                 if (response.ok) {
+                    // console.log(response);
                     return response.json();
                 }
                 else {
                     throw new Error(`Запрос завершился неуспешно ${response.status} ${response.statusText}`);
                 }
             })
-            .then(function (userData) {
-                console.log(userData.id);
+            .then(userData => {
+                // console.log(userData);
+                this.setState({validationState: true, isOpen: false});
+                this.props.toggle();
                 return userData.id;
             })
-            .catch(function (error) {
+            .catch(error => {
+                this.setState({validationState: false});
                 alert(error);
             });
         event.preventDefault();
@@ -78,14 +95,16 @@ export class SignupModal extends Component {
         return (
             <form id="registration-form" method="post" onSubmit={this.onRegistrationSubmit}>
                 <div id="registration-form" className="input-form">
+                    <InputFormRow id="reg-firstname" onChange={this.firstnameOnChange} label="Имя" type="text"/>
+                    <InputFormRow id="reg-lastname" onChange={this.lastnameOnChange} label="Фамилия" type="text"/>
                     <InputFormRow id="reg-login" onChange={this.loginOnChange} label="Логин" type="text"/>
                     <InputFormRow id="reg-password" onChange={this.passwordOnChange} label="Пароль" type="password"/>
                     <InputFormRow id="reg-email" onChange={this.emailOnChange} label="Email" type="email"/>
                     <InputFormRow id="reg-phone" onChange={this.phoneOnChange} label="Номер телефона" type="tel"/>
                 </div>
                 <Container className="button-box">
-                    <Button color="primary" type="submit">Зарегистрироваться</Button>{' '}
-                    <Button type="button" onClick={this.props.toggle}>Отмена</Button>
+                    <Button className="gapr-15" color="primary" type="submit">Зарегистрироваться</Button>
+                    <Button className="gapr-15" type="button" onClick={this.props.toggle}>Отмена</Button>
                 </Container>
             </form>
         )
