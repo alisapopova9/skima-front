@@ -72,8 +72,8 @@ export class LoginModal extends Component {
                     <InputFormRow id="auth-password" onChange={this.passwordOnChange} label="Пароль" type="password"/>
                 </div>
                 <Container className="button-box">
-                    <Button className="gapr-15" color="primary" type="submit">Войти</Button>
-                    <Button className="gapr-15" type="button" onClick={this.props.toggle}>Отмена</Button>
+                    <Button className="styles.gapr-15" color="primary" type="submit">Войти</Button>
+                    <Button className="styles.gapr-15" type="button" onClick={this.props.toggle}>Отмена</Button>
                 </Container>
             </form>
         )

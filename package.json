@@ -1,48 +1,34 @@
 {
   "name": "skima-front",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.0",
   "private": true,
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode production",
-    "dev": "webpack --mode development",
-    "start": "webpack-dev-server --mode development --open --hot --content-base ./dist --disableHostCheck"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/alisapopova9/skima-front.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/alisapopova9/skima-front/issues"
-  },
-  "homepage": "https://github.com/alisapopova9/skima-front#readme",
-  "devDependencies": {
-    "@babel/cli": "^7.4.3",
-    "@babel/core": "^7.4.3",
-    "@babel/plugin-proposal-class-properties": "^7.4.0",
-    "@babel/preset-env": "^7.4.3",
-    "@babel/preset-react": "^7.0.0",
-    "babel-cli": "^6.26.0",
-    "babel-loader": "^8.0.0",
-    "babel-preset-react": "^6.24.1",
-    "webpack": "^4.30.0",
-    "webpack-cli": "^3.3.0",
-    "webpack-dev-server": "^3.3.1"
-  },
   "dependencies": {
-    "@babel/core": "^7.0.0",
-    "bootstrap": "^4.0.0-alpha.6",
-    "css-loader": "^2.1.1",
-    "lodash": "^4.17.11",
+    "bootstrap": "^4.3.1",
     "react": "^16.8.6",
-    "react-bootstrap": "^0.32.1",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
-    "reactstrap": "^8.0.0",
-    "style-loader": "^0.23.1"
+    "react-scripts": "3.0.0",
+    "reactstrap": "^8.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

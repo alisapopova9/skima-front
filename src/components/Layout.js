@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavMenu } from './navbar/NavMenu';
+import icon from "./icon.png"
 
 export class Layout extends Component {
     // static pageName = Layout.name;
@@ -8,6 +9,9 @@ export class Layout extends Component {
         return (
             <div>
                 <NavMenu />
+                <div>
+                    <img src={icon} alt=""/>
+                </div>
             </div>
         )
     }
