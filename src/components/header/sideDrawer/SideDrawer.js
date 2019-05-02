@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import style from './sidedrawer.module.css';
 
 export class SideDrawer extends Component {
@@ -16,10 +17,10 @@ export class SideDrawer extends Component {
           <nav className={drawerClasses.join(' ')}>
               <ul className={style.defaultList}>
                   <li className={style.listItem}>
-                      <a href="/" className={style.defaultLink}>Войти</a>
+                      <Link to="/login" onClick={this.props.click} className={style.defaultLink}>Войти</Link>
                   </li>
                   <li className={style.listItem}>
-                      <a href="/" className={style.defaultLink}>Зарегистрироваться</a>
+                      <Link to="/registration" className={style.defaultLink}>Зарегистрироваться</Link>
                   </li>
               </ul>
           </nav>

@@ -1,0 +1,17 @@
+.defaultButton {
+    border: none;
+    cursor: pointer;
+    background: #cd4f01;
+    border-radius: 5px;
+    padding: 10px 20px;
+    color: white;
+    z-index: 10;
+}
+
+.startButton {
+    position: relative;
+}
+.startButton:hover,
+.startButton:active {
+    background: #AA4601;
+}

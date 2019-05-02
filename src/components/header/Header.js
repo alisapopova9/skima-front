@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router';
 import { Link } from 'react-router-dom';
-import { NavLink } from 'reactstrap';
-import { Home } from '../content/Home';
 import { DrawerToggleButton } from "./sideDrawer/DrawerToggleButton";
 import { SideDrawer } from "./sideDrawer/SideDrawer";
 import { Backdrop } from "../backdrop/Backdrop";
@@ -43,17 +40,17 @@ export class Header extends Component {
               <nav className={style.toolbarNavigation}>
                   <div className={style.toggleButton}>
                       <DrawerToggleButton click={this.drawerToggleClickHandler}/>
-                      <SideDrawer show={this.state.isSideDrawerOpened}/>
+                      <SideDrawer click={this.drawerToggleClickHandler} show={this.state.isSideDrawerOpened}/>
                       {backdrop}
                   </div>
                   <div className={style.toolbarLogo}>
-                      <a className={style.logoLink} href="/">SKIMA</a>
+                      <Link className={style.logoLink} to="/" onClick={this.backdropClickHandler}>SKIMA</Link>
                   </div>
                   <div className={style.spacer}></div>
                   <div className={style.toolbarNavigationItems}>
                       <ul className={style.defaultList}>
-                          <li className={style.navItem}><a href="/" className={style.defaultLink}>Войти</a></li>
-                          <li className={style.navItem}><a href="/" className={style.defaultLink}>Зарегистрироваться</a></li>
+                          <li className={style.navItem}><Link to="/login" className={style.defaultLink}>Войти</Link></li>
+                          <li className={style.navItem}><Link to="/registration" className={style.defaultLink}>Зарегистрироваться</Link></li>
                       </ul>
                   </div>
               </nav>
