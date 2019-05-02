@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { InputFormRow } from '../InputFormRow.js'
 import { Button, Modal, ModalHeader, ModalBody, Container } from 'reactstrap';
-import "./auth.css";
+import styles from "./auth.module.css";
 
 export class SignupModal extends Component {
     constructor(props) {
@@ -105,8 +105,8 @@ export class SignupModal extends Component {
                     <InputFormRow id="reg-phone" onChange={this.phoneOnChange} label="Номер телефона" type="tel"/>
                 </div>
                 <Container className="button-box">
-                    <button className="gapr-15" color="primary" type="submit">Зарегистрироваться</button>
-                    <button className="gapr-15" type="button" onClick={this.props.toggle}>Отмена</button>
+                    <button className={styles.gapr} color="primary" type="submit">Зарегистрироваться</button>
+                    <button className={styles.gapr} type="button" onClick={this.props.toggle}>Отмена</button>
                 </Container>
             </form>
         )

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { NavMenu } from './navbar/NavMenu';
+import { Header } from "./header/Header";
+import {Container } from 'reactstrap';
 import icon from "./icon.png"
 
 export class Layout extends Component {
@@ -8,10 +10,11 @@ export class Layout extends Component {
     render() {
         return (
             <div>
-                <NavMenu />
-                <div>
-                    <img src={icon} alt=""/>
-                </div>
+                <Header />
+                {/*<NavMenu />*/}
+                <Container>
+                    {this.props.children}
+                </Container>
             </div>
         )
     }
