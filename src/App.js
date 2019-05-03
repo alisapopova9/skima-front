@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router';
 import { Layout } from './components/Layout';
-import { Home } from './components/content/home/Home'
-import { Login } from "./components/auth/Login";
+import "./defaultStyles/layout.css";
 
 export class App extends Component {
     // static displayName = App.name;

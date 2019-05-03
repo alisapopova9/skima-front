@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { InputFormRow } from '../InputFormRow.js'
+import { InputFormRow } from './InputFormRow.js'
 import { Button, Modal, ModalHeader, ModalBody, Row, Col, Container } from 'reactstrap';
 
 export class LoginModal extends Component {

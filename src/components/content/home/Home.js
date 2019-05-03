@@ -19,7 +19,7 @@ export class Home extends Component {
                             </p>
                         </div>
                         <div className={style.startContainer}>
-                            <button className={[buttonStyle.defaultButton, buttonStyle.startButton].join(' ')}>
+                            <button className={buttonStyle.startButton}>
                                 Записаться на марафон
                             </button>
                         </div>

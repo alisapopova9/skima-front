@@ -6,7 +6,14 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Home } from "./components/content/home/Home";
 import { Login } from "./components/auth/Login";
 import { Registration } from "./components/auth/Registration";
+import WebFont from 'webfontloader';
 import {Layout} from "./components/Layout";
+
+WebFont.load({
+    google: {
+        families: ['Titillium Web:300,400,700', 'sans-serif']
+    }
+});
 
 ReactDom.render(
     <BrowserRouter>

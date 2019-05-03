@@ -1,0 +1,55 @@
+.mainContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.main {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: url("../../images/login.png") no-repeat;
+    background-position: center center;
+    background-size: cover;
+    max-width: 2560px;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.loginContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    margin: 0 8rem 0 8rem;
+    color: white;
+    height: 100%;
+}
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 15px 15px;
+    /*background: rgba(109, 124, 116, 0.4);*/
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+/*.about {*/
+    /*min-height: 10vh;*/
+    /*display: block;*/
+    /*background: #dadada;*/
+/*}*/
+
+@media (max-width: 400px) {
+    .loginContainer {
+        margin: 0 2rem 0 2rem;
+        /*width: 250px;*/
+    }
+}

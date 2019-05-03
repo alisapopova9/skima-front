@@ -1,0 +1,48 @@
+.defaultInput {
+    width: 350px;
+    padding: 0 10px;
+    line-height: 20px;
+    height: 40px;
+}
+.defaultInput:focus {
+    outline: none;
+    border: 1px solid #cd4f01;
+    -webkit-box-shadow: 0 0 4px 0 #cd4f01;
+    box-shadow: 0 0 4px 0 #cd4f01;
+}
+
+.defaultLabel {
+    cursor: pointer;
+    /*margin-right: 20px;*/
+    font-size: 20px;
+    width: 100px;
+    text-align: left;
+}
+
+.inputFormRow {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+}
+.inputFormRow:not(:last-of-type) {
+    margin-bottom: 10px;
+}
+
+@media (max-width: 400px) {
+    .defaultInput {
+        width: 150px;
+    }
+}
+
+@media (min-width: 401px) and (max-width: 768px) {
+    .defaultInput {
+        width: 200px;
+    }
+}
+
+@media (min-width: 769px) {
+    .defaultInput {
+        width: 250px;
+    }
+}

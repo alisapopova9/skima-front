@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { InputFormRow } from '../InputFormRow.js'
+import { InputFormRow } from '../auth/InputFormRow.js'
 import { LoginModal } from "../auth/LoginModal";
 import { SignupModal } from "../auth/SignupModal";
 

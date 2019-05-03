@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import inputStyle from '../../defaultStyles/input.module.css';
 
 export class InputFormRow extends React.Component {
     constructor(props) {
@@ -12,10 +12,10 @@ export class InputFormRow extends React.Component {
     render() {
         const { label, ...rest } = this.props;
         return (
-            <Container onClick={this.handleClick}>
-                <Label className="label">{label}</Label>
-                <Input {...rest} ref={r => this.myRef = r} />
-            </Container>
+            <div className={inputStyle.inputFormRow} onClick={this.handleClick}>
+                <label className={inputStyle.defaultLabel}>{label}</label>
+                <input className={inputStyle.defaultInput} {...rest} ref={r => this.myRef = r} />
+            </div>
         );
     }
 
