@@ -13,10 +13,10 @@
 
 .defaultLabel {
     cursor: pointer;
-    /*margin-right: 20px;*/
-    font-size: 20px;
+    font-size: 17px;
+    line-height: 18px;
     width: 100px;
-    text-align: left;
+    height: 20px;
 }
 
 .inputFormRow {
@@ -26,12 +26,17 @@
     align-items: center;
 }
 .inputFormRow:not(:last-of-type) {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 @media (max-width: 400px) {
     .defaultInput {
         width: 150px;
+        height: 30px;
+    }
+    .defaultLabel {
+        font-size: 15px;
+        line-height: 15px;
     }
 }
 

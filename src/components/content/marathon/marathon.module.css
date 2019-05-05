@@ -1,0 +1,47 @@
+.mainContainer {
+    box-sizing: border-box;
+    background: rgba(33, 24, 69, 1);
+    /*background: #fe5e00;*/
+    min-height: 100vh;
+    width: 100vw;
+    padding: 68px 8rem 0 8rem;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    max-width: 1280px;
+    width: 100%;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 50px;
+}
+
+.name {
+    display: flex;
+    flex-direction: column;
+    /*justify-content: space-between;*/
+    border-bottom: 1px solid black;
+}
+.head {
+    display: flex;
+    justify-content: space-between;
+}
+
+.description {
+    box-sizing: border-box;
+    margin-top: 15px;
+
+}
+
+.duration {
+
+}
+
+.sprintsContainer {
+
+}

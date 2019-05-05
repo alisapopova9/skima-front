@@ -1,20 +1,27 @@
 .toolbar {
+    display: flex;
+    /*align-items: center;*/
     position: fixed;
     height: 68px;
     width: 100%;
     background-color: rgba(100, 100, 100, 0.1);
     z-index: 201;
+    padding: 0 8rem;
 }
 
 .toolbarNavigation {
     display: flex;
     align-items: center;
+    justify-content: space-around;
+    max-width: 1280px;
+    width: 100%;
     height: 100%;
-    padding: 0 8rem;
+    margin: 0 auto;
 }
 
 .toolbarLogo {
     margin-left: 0.5rem;
+    margin-right: 1rem;
 }
 .defaultLink {
     color: white;
@@ -82,6 +89,7 @@
         padding: 0 1rem;
     }
 }
+
 @media (min-width: 769px) {
     .toggleButton {
         display: none;

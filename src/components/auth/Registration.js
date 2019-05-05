@@ -23,7 +23,7 @@ export class Registration extends Component {
                                 <InputFormRow id="reg-email" label="Email" type="email"/>
                                 <InputFormRow id="reg-phone" label="Номер телефона" type="tel"/>
                             </div>
-                            <div>
+                            <div className={style.buttonBox}>
                                 <button className={buttonStyle.defaultButton} type="submit">Зарегистрироваться</button>
                             </div>
                         </div>

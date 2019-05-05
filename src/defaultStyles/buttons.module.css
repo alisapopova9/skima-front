@@ -27,6 +27,8 @@
     cursor: pointer;
     background: #cd4f01;
     border-radius: 5px;
+    height: 45px;
+    /*line-height: 40px;*/
     padding: 10px 20px;
     color: white;
     transition: .3s;

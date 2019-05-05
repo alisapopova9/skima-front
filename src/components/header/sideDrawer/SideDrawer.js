@@ -20,7 +20,7 @@ export class SideDrawer extends Component {
                       <Link to="/login" onClick={this.props.click} className={style.defaultLink}>Войти</Link>
                   </li>
                   <li className={style.listItem}>
-                      <Link to="/registration" className={style.defaultLink}>Зарегистрироваться</Link>
+                      <Link to="/registration" onClick={this.props.click} className={style.defaultLink}>Зарегистрироваться</Link>
                   </li>
               </ul>
           </nav>

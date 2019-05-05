@@ -5,9 +5,9 @@ import { App } from './App.js';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Home } from "./components/content/home/Home";
 import { Login } from "./components/auth/Login";
-import { Registration } from "./components/auth/Registration";
+import { Registration } from "./components/auth/Registration"
+import { Marathon } from "./components/content/marathon/Marathon";
 import WebFont from 'webfontloader';
-import {Layout} from "./components/Layout";
 
 WebFont.load({
     google: {
@@ -22,6 +22,7 @@ ReactDom.render(
             <Route exact path='/' component={Home} />
             <Route path='/login' component={Login} />
             <Route path='/registration' component={Registration} />
+            <Route path='/activities/1' component={Marathon} />
         </Switch>
     </BrowserRouter>,
     document.getElementById('root')
