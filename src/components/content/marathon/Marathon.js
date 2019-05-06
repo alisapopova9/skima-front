@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import style from './marathon.module.css';
 import buttonStyle from '../../../defaultStyles/buttons.module.css';
+import { Accordion } from "../../accordion/Accordion";
 
 export class Marathon extends Component {
     constructor(props) {
@@ -70,6 +71,38 @@ export class Marathon extends Component {
                     'Отпишись от лишних групп и профилей в соц. сетях',
                 ]
             },
+            {
+                id: 5,
+                name: 'Самоанализ',
+                description: 'Здесь будет очень крутое описание!',
+                tasks: [
+                    'Выпиши все свои привычки',
+                    'Отметь, какие привычки приносят тебе пользу, а от каких ты хотел бы избавиться',
+                    'Отвечай себе на вопрос “Зачем я это делаю?” после каждого принятого решения',
+                    'Выпиши свои цели и подумай, что нужно сделать для их осуществления',
+                ]
+            },
+            {
+                id: 6,
+                name: 'Заряжаемся кислородом',
+                description: 'Здесь будет очень крутое описание!',
+                tasks: [
+                    'Погуляй 40 минут',
+                    'Выйди на учебу / работу раньше обычного, чтобы не спеша пройтись',
+                    'Пройди 10000 шагов за день',
+                ]
+            },
+            {
+                id: 7,
+                name: 'Контролируем свои финансы',
+                description: 'Здесь будет очень крутое описание!',
+                tasks: [
+                    'Взвешивай необходимость каждой покупки',
+                    'Записывай свою каждую покупку и ее стоимость',
+                    'Запиши все “за” и “против” каждой покупки',
+                    'Установи и придерживайся максимальной суммы, которую ты планируешь потратить за сегодня'
+                ]
+            },
         ]
     }
 
@@ -78,12 +111,12 @@ export class Marathon extends Component {
 
         return sprints.map(function (sprint) {
             return (
-                <li key={sprint.id} className={style.sprint}>
-                    <h4 className={style.sprintName}>{sprint.name}</h4>
-                    <div>
-                        {sprint.description}
+                    <div key={sprint.id} label={sprint.name} className={style.sprint}>
+                        {/*<h4 className={style.sprintName}>{sprint.name}</h4>*/}
+                        <div>
+                            {sprint.description}
+                        </div>
                     </div>
-                </li>
             );
         });
     }
@@ -110,9 +143,9 @@ export class Marathon extends Component {
 
                   </div>
                   <div className={style.sprintsContainer}>
-                      <ul>
+                      <Accordion className={style.sprints}>
                           {this.renderSprints()}
-                      </ul>
+                      </Accordion>
                   </div>
               </div>
           </div>

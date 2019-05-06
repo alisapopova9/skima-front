@@ -3,7 +3,6 @@ import { Header } from "./header/Header";
 import {Container } from 'reactstrap';
 
 export class Layout extends Component {
-    // static pageName = Layout.name;
 
     render() {
         return (

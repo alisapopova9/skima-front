@@ -1,0 +1,25 @@
+.sectionContainer {
+    background: lightgray;
+    padding: 5px 10px;
+    margin-bottom: 5px;
+}
+
+.openedSection {
+    background: #ECECEC;
+    padding: 5px 10px;
+    margin-bottom: 5px;
+}
+
+.section {
+    cursor: pointer;
+}
+
+.arrowContainer {
+    float: right;
+}
+
+.sectionContent {
+    background: white;
+    margin-top: 10px;
+    padding: 10px 20px;
+}
