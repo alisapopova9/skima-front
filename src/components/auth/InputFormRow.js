@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup } from 'reactstrap';
-import { Link } from 'react-router-dom';
 import inputStyle from '../../defaultStyles/input.module.css';
 
-export class InputFormRow extends React.Component {
+export class InputFormRow extends Component {
     constructor(props) {
         super(props);
         this.myRef = null;

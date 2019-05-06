@@ -78,8 +78,8 @@ export class Marathon extends Component {
 
         return sprints.map(function (sprint) {
             return (
-                <li key={sprint.id}>
-                    <h4>{sprint.name}</h4>
+                <li key={sprint.id} className={style.sprint}>
+                    <h4 className={style.sprintName}>{sprint.name}</h4>
                     <div>
                         {sprint.description}
                     </div>
