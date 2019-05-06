@@ -127,8 +127,10 @@ export class Marathon extends Component {
               <div className={style.content}>
                   <div className={style.name}>
                       <div className={style.head}>
-                        <h1>{this.getMarathonName()}</h1>
-                        <button className={buttonStyle.defaultButton}>Участвовать</button>
+                        <h1 className={style.nameHeader}>{this.getMarathonName()}</h1>
+                          <div>
+                              <button className={buttonStyle.defaultButton}>Участвовать</button>
+                          </div>
                       </div>
                       <div>
                           Марафон будет проходить с хх.хх.хххх до уу.уу.уууу

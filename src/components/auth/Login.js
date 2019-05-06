@@ -35,9 +35,8 @@ export class Login extends Component {
         };
         fetch(`https://www.skima.cf/v1/auth/tokens/`, options)
             .then(response => {
-                console.log(response);
                 if (response.ok) {
-                    return response.json();
+                    return response;
                 }
                 else {
                     throw new Error(`Запрос завершился неуспешно ${response.status} ${response.statusText}`);
@@ -47,7 +46,7 @@ export class Login extends Component {
                 console.log(userData);
             })
             .catch(error => {
-                alert(error);
+                console.log(error);
             });
         event.preventDefault();
     }

@@ -27,6 +27,9 @@
     flex-direction: column;
     border-bottom: 1px solid black;
 }
+.nameHeader {
+    width: 400px;
+}
 .head {
     display: flex;
     justify-content: space-between;
@@ -64,4 +67,20 @@
 
 .sprint:not(:last-of-type) {
     margin-bottom: 15px;
+}
+
+@media (min-width: 200px) and (max-width: 480px) {
+    .mainContainer {
+        padding: 68px 0 68px 0;
+    }
+    .head {
+        flex-direction: column;
+    }
+    .nameHeader {
+        width: 150px;
+    }
+
+    .content {
+        width: 100%;
+    }
 }
