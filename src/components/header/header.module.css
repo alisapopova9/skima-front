@@ -1,14 +1,18 @@
 .toolbar {
     display: flex;
-    /*align-items: center;*/
     position: fixed;
     height: 68px;
     width: 100%;
-    background-color: rgba(100, 100, 100, 0.1);
+    background-color: rgba(100, 100, 100, 0.3);
     z-index: 201;
     padding: 0 8rem;
+    transition: opacity 0.5s ease, background 0.2s ease, height 0.2s ease, transform 0.5s ease;
 }
 
+.hidden {
+    transform: translateY(-68px);
+    opacity: 0;
+}
 .toolbarNavigation {
     display: flex;
     align-items: center;

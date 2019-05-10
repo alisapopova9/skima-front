@@ -4,14 +4,15 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.3.1",
+    "classnames": "^2.2.6",
+    "prop-types": "latest",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router": "latest",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.0",
     "reactstrap": "^8.0.0",
-    "webfontloader": "^1.6.28",
-    "prop-types": "latest"
+    "webfontloader": "^1.6.28"
   },
   "scripts": {
     "start": "react-scripts start",

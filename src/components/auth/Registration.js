@@ -3,7 +3,6 @@ import style from './login.module.css';
 import {InputFormRow} from "./InputFormRow";
 import buttonStyle from "../../defaultStyles/buttons.module.css";
 
-
 export class Registration extends Component {
     constructor(props) {
         super(props);
@@ -22,7 +21,12 @@ export class Registration extends Component {
 
     }
 
+    validatePassword(value) {
+
+    }
+
     onSubmit() {
+        this.validateEmail();
 
     }
 

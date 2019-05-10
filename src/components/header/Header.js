@@ -4,6 +4,7 @@ import { DrawerToggleButton } from "./sideDrawer/DrawerToggleButton";
 import { SideDrawer } from "./sideDrawer/SideDrawer";
 import { Backdrop } from "../backdrop/Backdrop";
 import style from "./header.module.css";
+import classnames from "classnames";
 
 export class Header extends Component {
     constructor(props) {
@@ -14,8 +15,30 @@ export class Header extends Component {
 
         this.state = {
             isSideDrawerOpened: false,
+            prevScrollPosition: window.pageYOffset,
+            isVisible: true,
         }
     }
+
+    componentDidMount() {
+        window.addEventListener('scroll', this.scrollHandler);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.scrollHandler);
+    }
+
+    scrollHandler = () => {
+        const { prevScrollPosition } = this.state;
+
+        const currentScrollPosition = window.pageYOffset;
+        const isVisible = prevScrollPosition > currentScrollPosition;
+
+        this.setState({
+            prevScrollPosition: currentScrollPosition,
+            isVisible
+        });
+    };
 
     drawerToggleClickHandler() {
         this.setState(prevState => ({
@@ -36,7 +59,7 @@ export class Header extends Component {
             backdrop = <Backdrop click={this.backdropClickHandler}/>;
         }
         return (
-          <header className={style.toolbar}>
+          <header className={ classnames(style.toolbar, !this.state.isVisible && style.hidden) }>
               <nav className={style.toolbarNavigation}>
                   <div className={style.toggleButton}>
                       <DrawerToggleButton click={this.drawerToggleClickHandler}/>
