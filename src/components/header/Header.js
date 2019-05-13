@@ -32,7 +32,7 @@ export class Header extends Component {
         const { prevScrollPosition } = this.state;
 
         const currentScrollPosition = window.pageYOffset;
-        const isVisible = prevScrollPosition > currentScrollPosition;
+        const isVisible = prevScrollPosition > currentScrollPosition && !(currentScrollPosition === window.height);
 
         this.setState({
             prevScrollPosition: currentScrollPosition,
@@ -42,13 +42,13 @@ export class Header extends Component {
 
     drawerToggleClickHandler() {
         this.setState(prevState => ({
-            isSideDrawerOpened: !prevState.isSideDrawerOpened
+            isSideDrawerOpened: !prevState.isSideDrawerOpened,
         }));
     };
 
     backdropClickHandler() {
         this.setState({
-            isSideDrawerOpened: false
+            isSideDrawerOpened: false,
         });
     };
 

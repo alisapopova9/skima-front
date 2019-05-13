@@ -6,23 +6,25 @@ import buttonStyle from '../../defaultStyles/buttons.module.css';
 export class Login extends Component {
     constructor(props) {
         super(props);
-        this.loginOnChange = this.loginOnChange.bind(this);
+        this.emailOnChange = this.emailOnChange.bind(this);
         this.passwordOnChange = this.passwordOnChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.state = {
-            login: '',
+            email: '',
             password: '',
         };
     }
 
-    loginOnChange(e) {
-        this.setState({ login: e.target.value });
+    emailOnChange(e) {
+        this.setState({ email: e.target.value });
     }
     passwordOnChange(e) {
         this.setState({ password: e.target.value });
     }
 
     onSubmit(event) {
+        console.log(this.state.email);
+        console.log(this.state.password);
         const options = {
             method: "POST",
             headers: {
@@ -30,11 +32,13 @@ export class Login extends Component {
             },
             body:
                 JSON.stringify({
-                    "login": this.state.login,
-                    "password": this.state.password})
+                    'email': this.state.email,
+                    'password': this.state.password
+                })
         };
         fetch(`https://www.skima.cf/v1/auth/tokens/`, options)
             .then(response => {
+                console.log(response);
                 if (response.ok) {
                     return response;
                 }
@@ -58,7 +62,7 @@ export class Login extends Component {
                     <form className={style.loginContainer} id="login-form" method="post" onSubmit={this.onSubmit}>
                         <div className={style.formContainer}>
                             <div className={style.inputContainer}>
-                                <InputFormRow id="auth-login" onChange={this.loginOnChange} label="Логин" type="text"/>
+                                <InputFormRow id="auth-email" onChange={this.emailOnChange} label="E-mail" type="email"/>
                                 <InputFormRow id="auth-password" onChange={this.passwordOnChange} label="Пароль" type="password"/>
                             </div>
                             <div>

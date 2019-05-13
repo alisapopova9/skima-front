@@ -1,0 +1,74 @@
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.errorContainer {
+    position: relative;
+    padding: 2px 10px;
+    margin-top: 10px;
+    background: white;
+    width: 250px;
+}
+
+.error {
+    color: red;
+    text-align: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.errorTooltip {
+    box-sizing: border-box;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    line-height: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #E30000;
+    width: 250px;
+    height: 40px;
+    padding: 5px 20px;
+    background: white;
+    position: absolute;
+    top: -25px;
+    /*top: -14%;*/
+    left: 100%;
+    border-radius: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.errorTooltip::before {
+    position: absolute;
+    top: 0%;
+    left: -9px;
+    content: '';
+    width: 0;
+    height: 0;
+    border-top: 25px solid transparent;
+    border-right: 24px solid white;
+    border-bottom:23px solid transparent;
+    z-index: 1;
+}
+.errorTooltip::after {
+    position: absolute;
+    content: '';
+    top: 35%;
+    left: -16px;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-right: 19px solid rgba(0, 0, 0, 0.1);;
+    border-bottom: 10px solid transparent;
+    z-index: -1;
+}
+
+@media (max-width: 768px) and (min-width: 401px) {
+    .errorContainer {
+        width: 200px;
+    }
+}

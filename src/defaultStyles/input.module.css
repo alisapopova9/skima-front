@@ -11,6 +11,12 @@
     box-shadow: 0 0 4px 0 #cd4f01;
 }
 
+.errorInput {
+    border: 1px solid #ff0000;
+    -webkit-box-shadow: 0 0 4px 0 #ff0000;
+    box-shadow: 0 0 4px 0 #ff0000;
+}
+
 .defaultLabel {
     cursor: pointer;
     font-size: 17px;
@@ -23,7 +29,7 @@
     display: flex;
     width: 100%;
     justify-content: space-around;
-    align-items: center;
+    /*align-items: center;*/
 }
 .inputFormRow:not(:last-of-type) {
     margin-bottom: 20px;
