@@ -47,6 +47,7 @@ export class Login extends Component {
                 }
             })
             .then(userData => {
+                window.location.href = '/activities/1';
                 console.log(userData);
             })
             .catch(error => {

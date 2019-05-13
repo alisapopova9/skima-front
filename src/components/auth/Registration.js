@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import style from './login.module.css';
 import {InputFormRow} from "./InputFormRow";
+import {CongratsModal} from "../modal/CongratsModal";
 import buttonStyle from "../../defaultStyles/buttons.module.css";
 import inputStyle from "../../defaultStyles/input.module.css";
 import ifrStyle from "./inputFormRow.module.css";
@@ -10,17 +11,22 @@ export class Registration extends Component {
         super(props);
 
         this.state = {
+            isModalOpened: false,
+            validationState: false,
             password: '',
             email: '',
             firstname: '',
             lastname: '',
+            phone: '',
         };
 
         this.onEmailChange = this.onEmailChange.bind(this);
         this.onPasswordChange = this.onPasswordChange.bind(this);
         this.onFirstnameChange = this.onFirstnameChange.bind(this);
         this.onLastnameChange = this.onLastnameChange.bind(this);
+        this.onPhoneChange = this.onPhoneChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.toggleModal = this.toggleModal.bind(this);
     }
 
     onEmailChange(e) {
@@ -39,6 +45,10 @@ export class Registration extends Component {
         this.setState({ lastname: e.target.value });
     }
 
+    onPhoneChange(e) {
+        this.setState({ phone: e.target.value });
+    }
+
     renderError(name, value) {
         let errorBlock = document.getElementById(name);
         let inputBlock = document.getElementById(name.substring(6));
@@ -48,14 +58,11 @@ export class Registration extends Component {
         errorBlock.innerText = value;
     }
 
-
     validateEmail(value) {
         console.log(value);
         let emailPattern =
             /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}/g;
-        // console.log(emailPattern.test(value));
         if (emailPattern.test(value) === false) {
-            console.log(emailPattern.test(value));
             this.renderError('error-reg-email', "Неверный формат e-mail");
             return false;
         }
@@ -101,16 +108,34 @@ export class Registration extends Component {
         return true;
     }
 
+    toggleModal() {
+        this.setState(prevState => ({
+            isModalOpened: !prevState.isModalOpened
+        }));
+    }
+
+    renderCongratsModal() {
+        return(
+          <CongratsModal isOpen={this.state.isModalOpened} toggle={this.toggleModal} />
+        );
+    }
+
     onSubmit(event) {
         event.preventDefault();
 
         let isDataOk = false;
 
-        // this.validateEmail(this.state.email);
-        // this.validatePassword(this.state.password);
+        let isEmailOk =  this.validateEmail(this.state.email);
+        let isPasswordOk =  this.validatePassword(this.state.password);
 
-        isDataOk = this.validateEmail(this.state.email) && this.validatePassword(this.state.password);
-        console.log(isDataOk);
+        isDataOk = isEmailOk && isPasswordOk;
+
+        if (isDataOk) {
+            this.setState({ validationState: true });
+        }
+        else {
+            this.setState({ validationState: false });
+        }
 
         const options = {
             method: "POST",
@@ -121,6 +146,9 @@ export class Registration extends Component {
                 JSON.stringify({
                     'email': this.state.email,
                     'password': this.state.password,
+                    'firstname': this.state.firstname,
+                    'lastname': this.state.lastname,
+                    'phone': this.state.phone,
                 })
         };
 
@@ -136,6 +164,9 @@ export class Registration extends Component {
                     }
                 })
                 .then(userData => {
+                    // this.renderCongratsModal();
+                    this.toggleModal();
+                    // window.location.href = '/';
                     console.log(userData);
                 })
                 .catch(error => {
@@ -154,11 +185,13 @@ export class Registration extends Component {
                             <div className={style.inputContainer}>
                                 <InputFormRow id="reg-email" label="E-mail *" onChange={this.onEmailChange} type="text" placeholder="example@example.com"/>
                                 <InputFormRow id="reg-password" label="Пароль *" onChange={this.onPasswordChange} type="password"/>
-                                <InputFormRow id="reg-firstname" label="Имя" type="text"/>
-                                <InputFormRow id="reg-lastname" label="Фамилия" type="text"/>
+                                <InputFormRow id="reg-firstname" label="Имя" onChange={this.onFirstnameChange} type="text"/>
+                                <InputFormRow id="reg-lastname" label="Фамилия" onChange={this.onLastnameChange} type="text"/>
+                                <InputFormRow id="reg-phone" label="Телефон" onChange={this.onPhoneChange} type="tel"/>
                             </div>
                             <div className={style.buttonBox}>
                                 <button className={buttonStyle.defaultButton} type="submit">Зарегистрироваться</button>
+                                { this.state.isModalOpened && this.renderCongratsModal() }
                             </div>
                         </div>
                     </form>

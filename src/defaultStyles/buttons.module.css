@@ -1,5 +1,6 @@
 .startButton {
     border: none;
+    text-decoration: none;
     cursor: pointer;
     background: #cd4f01;
     border-radius: 5px;
@@ -11,6 +12,8 @@
 
 .startButton:hover {
     background: #bf4f01;
+    text-decoration: none;
+    color: white;
 }
 
 .startButton:focus {
@@ -24,6 +27,7 @@
 
 .defaultButton {
     border: none;
+    text-decoration: none;
     cursor: pointer;
     background: #cd4f01;
     border-radius: 5px;
@@ -35,6 +39,8 @@
 }
 .defaultButton:hover {
     background: #bf4f01;
+    color: white;
+    text-decoration: none;
 }
 .defaultButton:focus {
     outline: none;

@@ -1,0 +1,14 @@
+.info {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.modalContainer {
+    top: 25%;
+}
