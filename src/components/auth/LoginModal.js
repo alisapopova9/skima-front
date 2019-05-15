@@ -31,6 +31,7 @@ export class LoginModal extends Component {
     }
 
     onLoginSubmit(event) {
+        event.preventDefault();
         const options = {
             method: "POST",
             headers: {
@@ -44,7 +45,6 @@ export class LoginModal extends Component {
         };
         fetch(`https://www.skima.cf/v1/auth/tokens/`, options)
             .then(response => {
-                // console.log(response.body);
                 if (response.ok) {
                     return response.json();
                 }
@@ -54,14 +54,11 @@ export class LoginModal extends Component {
             })
             .then(userData => {
                 console.log(userData.token);
-                // localStorage.setItem("token");
                 this.props.toggle();
-                // return userData.token;
             })
             .catch(error => {
                 alert(error);
             });
-        event.preventDefault();
     }
 
     renderLoginForm() {

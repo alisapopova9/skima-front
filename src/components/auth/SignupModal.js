@@ -53,6 +53,7 @@ export class SignupModal extends Component {
     };
 
     onRegistrationSubmit(event) {
+        event.preventDefault();
         const options = {
             method: "POST",
             headers: {
@@ -72,7 +73,6 @@ export class SignupModal extends Component {
         fetch('/v1/users/', options)
             .then(function (response) {
                 if (response.ok) {
-                    // console.log(response);
                     return response.json();
                 }
                 else {
@@ -80,20 +80,17 @@ export class SignupModal extends Component {
                 }
             })
             .then(userData => {
-                // console.log(userData);
                 this.setState({validationState: true, isOpen: false});
                 this.props.toggle();
                 return userData.id;
             })
             .catch(error => {
                 this.setState({validationState: false});
-                alert(error);
+                console.log(error);
             });
-        event.preventDefault();
     }
 
     renderRegistrationForm() {
-        // console.log(styles["SignupModal-gapr-15"]);
         return (
             <form id="registration-form" method="post" onSubmit={this.onRegistrationSubmit}>
                 <div id="registration-form" className="input-form">

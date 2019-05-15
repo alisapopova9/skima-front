@@ -5,6 +5,10 @@ import jwt_decode from 'jwt-decode';
 
 export class App extends Component {
 
+    /**
+     * Work on token checking is in progress
+     * @returns {*}
+     */
     componentDidMount() {
         let token = localStorage.getItem('token');
         if (token !== null) {
@@ -16,11 +20,6 @@ export class App extends Component {
                     "Authorization": "Bearer " + token,
                 }
             };
-
-            // fetch('https://www.skima.cf/', options)
-            //     .then(response => {
-            //
-            //     })
         }
     }
 
