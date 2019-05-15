@@ -23,9 +23,7 @@
     align-items: center;
     box-sizing: border-box;
     margin: 68px 8rem 0 8rem;
-    /*padding-top: 68px;*/
     color: white;
-    height: 100%;
 }
 .inputContainer {
     display: flex;
@@ -39,7 +37,6 @@
     align-items: center;
     box-sizing: border-box;
     padding: 15px 15px;
-    /*background: rgba(109, 124, 116, 0.4);*/
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 

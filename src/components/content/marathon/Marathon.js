@@ -3,6 +3,8 @@ import style from './marathon.module.css';
 import buttonStyle from '../../../defaultStyles/buttons.module.css';
 import { Accordion } from "../../accordion/Accordion";
 
+
+
 export class Marathon extends Component {
     constructor(props) {
         super(props);
@@ -17,6 +19,21 @@ export class Marathon extends Component {
     }
 
     getMarathonName() {
+        // const options = {
+        //     method: "GET",
+        // };
+        // let marathonName = '';
+        // fetch('https://www.skima.cf/activities/5cd84e0fce90c810c920dd73', options)
+        //     .then(response => {
+        //         if (response.ok) {
+        //             return response.json();
+        //         }
+        //         throw new Error('Запрос завершился неудачно');
+        //     })
+        //     .then(marathonData => {
+        //        // marathonName = marathonData.
+        //     })
+
         return '7 дней осознанности';
     }
 

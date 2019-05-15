@@ -31,7 +31,7 @@ export class CongratsModal extends Component {
                       Вернуться на главную
                   </Link>
                   <Link className={buttonStyle.defaultButton} to="/activities/1">
-                      Записаться на марафон
+                      Перейти к марафону
                   </Link>
               </div>
           </Container>

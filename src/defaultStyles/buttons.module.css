@@ -45,3 +45,9 @@
 .defaultButton:focus {
     outline: none;
 }
+
+@media (max-width: 400px) {
+    .defaultButton {
+
+    }
+}

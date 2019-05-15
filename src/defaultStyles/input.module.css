@@ -29,7 +29,6 @@
     display: flex;
     width: 100%;
     justify-content: space-around;
-    /*align-items: center;*/
 }
 .inputFormRow:not(:last-of-type) {
     margin-bottom: 20px;
@@ -38,7 +37,8 @@
 @media (max-width: 400px) {
     .defaultInput {
         width: 150px;
-        height: 30px;
+        height: 32px;
+        font-size: 12px;
     }
     .defaultLabel {
         font-size: 15px;

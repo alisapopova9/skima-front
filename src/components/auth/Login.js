@@ -23,8 +23,7 @@ export class Login extends Component {
     }
 
     onSubmit(event) {
-        console.log(this.state.email);
-        console.log(this.state.password);
+        event.preventDefault();
         const options = {
             method: "POST",
             headers: {
@@ -38,22 +37,20 @@ export class Login extends Component {
         };
         fetch(`https://www.skima.cf/v1/auth/tokens/`, options)
             .then(response => {
-                console.log(response);
                 if (response.ok) {
-                    return response;
+                    console.log(response);
+                    return response.json();
                 }
                 else {
                     throw new Error(`Запрос завершился неуспешно ${response.status} ${response.statusText}`);
                 }
             })
-            .then(userData => {
-                window.location.href = '/activities/1';
-                console.log(userData);
+            .then(response => {
+                localStorage.setItem('token', response.token);
             })
             .catch(error => {
                 console.log(error);
             });
-        event.preventDefault();
     }
 
     render() {
