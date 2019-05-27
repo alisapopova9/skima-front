@@ -1,0 +1,49 @@
+.container {
+    display: flex;
+    align-content: center;
+    box-sizing: border-box;
+    background: rgba(33, 24, 69, 1);
+    min-height: 100vh;
+    width: 100%;
+    padding: 68px 8rem 68px 8rem;
+    cursor: default;
+}
+
+.marathonContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    box-sizing: border-box;
+    height: 100%;
+    max-width: 1280px;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10px;
+}
+
+.marathon {
+    display: flex;
+    flex-basis: 20em;
+    box-sizing: border-box;
+    max-height: 300px;
+    min-height: 150px;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    margin-top: 20px;
+   margin-right: 10px;
+    margin-left: 10px;
+}
+
+@media (min-width: 200px) and (max-width: 480px) {
+    .container {
+        padding: 68px 4rem;
+    }
+    .marathonContainer {
+        flex-direction: column;
+    }
+    .marathon {
+        width: 100%;
+    }
+}

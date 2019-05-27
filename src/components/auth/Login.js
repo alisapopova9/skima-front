@@ -46,7 +46,9 @@ export class Login extends Component {
                 }
             })
             .then(response => {
-                localStorage.setItem('token', response.token);
+                this.props.login(response.token);
+                // localStorage.setItem('token', response.token);
+                // window.location.reload();
             })
             .catch(error => {
                 console.log(error);

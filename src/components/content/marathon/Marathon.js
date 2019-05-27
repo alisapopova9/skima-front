@@ -12,15 +12,40 @@ export class Marathon extends Component {
 
         this.state = {
             name: '',
-            description: '',
+            descr: '',
             startAt: '',
             endAt: '',
-            sprints: '',
+            sprints: [],
         }
     }
 
+    componentDidMount() {
+        const options = {
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer" + ' ' + localStorage.getItem('token'),
+            }
+        };
+
+        fetch(`https://www.skima.cf/v1/maraphones/5cd84e0fce90c810c920dd73`, options)
+            .then(response =>
+                response.json())
+            .then(response => {
+                // console.log(response);
+                this.setState({
+                    name: response.title,
+                    description: response.description,
+                    sprints: response.sprints,
+                })
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+    }
+
     getMarathonName() {
-        return '7 дней осознанности';
+        return this.state.name;
     }
 
     getMarathonDescription() {
@@ -109,19 +134,51 @@ export class Marathon extends Component {
         ]
     }
 
-    renderSprints() {
-        const sprints = this.getMarathonSprints();
+    // getMarathonInfo(id) {
+    //     const options = {
+    //         method: "GET",
+    //         headers: {
+    //             "Authorization": "Bearer" + ' ' + localStorage.getItem('token'),
+    //         }
+    //     };
+    //
+    //     fetch(`https://www.skima.cf/v1/maraphones/${id}`, options)
+    //         .then(response =>
+    //             response.json())
+    //         .then(response => {
+    //             // console.log(response);
+    //             this.setState({
+    //                 name: response.title,
+    //                 descr: response.description,
+    //                 sprintsArray: response.sprints,
+    //             })
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //         });
+    // }
 
-        return sprints.map(function (sprint) {
+    renderSprints() {
+        // console.log(this.state.sprints[1]);
+        let sprints = this.state.sprints;
+
+        return sprints.map(function(sprint) {
             return (
-                    <div key={sprint.id} id={sprint.id} label={sprint.name} className={style.sprint}>
+                    <div key={sprint.number} id={sprint.number} label={sprint.title} className={style.sprint}>
                         {/*<h4 className={style.sprintName}>{sprint.name}</h4>*/}
                         <div>
                             {sprint.description}
                         </div>
                     </div>
             );
-        });
+        })
+    }
+    renderSprintsAccordion() {
+        return (
+            <Accordion>
+                { this.renderSprints() }
+            </Accordion>
+        );
     }
 
     render() {
@@ -130,7 +187,7 @@ export class Marathon extends Component {
               <div className={style.content}>
                   <div className={style.name}>
                       <div className={style.head}>
-                        <h1 className={style.nameHeader}>{this.getMarathonName()}</h1>
+                        <h1 className={style.nameHeader}>{ this.getMarathonName() }</h1>
                           <div>
                               <button className={buttonStyle.defaultButton}>Участвовать</button>
                           </div>
@@ -148,9 +205,7 @@ export class Marathon extends Component {
 
                   </div>
                   <div className={style.sprintsContainer}>
-                      <Accordion className={style.sprints}>
-                          {this.renderSprints()}
-                      </Accordion>
+                      { this.state.sprints !== [] && this.renderSprintsAccordion() }
                   </div>
               </div>
           </div>

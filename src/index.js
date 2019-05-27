@@ -8,6 +8,8 @@ import { Login } from "./components/auth/Login";
 import { Registration } from "./components/auth/Registration"
 import { Marathon } from "./components/content/marathon/Marathon";
 import WebFont from 'webfontloader';
+import {Layout} from "./components/Layout";
+import {Activities} from "./components/content/activities/Activities";
 
 WebFont.load({
     google: {
@@ -18,12 +20,6 @@ WebFont.load({
 ReactDom.render(
     <BrowserRouter>
         <App />
-        <Switch>
-            <Route exact path='/' component={Home} />
-            <Route path='/login' component={Login} />
-            <Route path='/registration' component={Registration} />
-            <Route path='/activities/1' component={Marathon} />
-        </Switch>
     </BrowserRouter>,
     document.getElementById('root')
 );

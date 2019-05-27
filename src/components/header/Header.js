@@ -17,6 +17,7 @@ export class Header extends Component {
             isSideDrawerOpened: false,
             prevScrollPosition: window.pageYOffset,
             isVisible: true,
+            headerContent: '',
         }
     }
 
@@ -40,6 +41,11 @@ export class Header extends Component {
         });
     };
 
+    logoutHandler = () => {
+        // localStorage.removeItem('token');
+        // window.location.reload();
+    };
+
     drawerToggleClickHandler() {
         this.setState(prevState => ({
             isSideDrawerOpened: !prevState.isSideDrawerOpened,
@@ -52,29 +58,40 @@ export class Header extends Component {
         });
     };
 
+
+
     render() {
         let backdrop;
 
+        let headerContent =
+            this.props.isAuthorized === true ?
+                <ul className={style.defaultList}>
+                    <li className={style.navItem}>
+                        <Link to="/" className={style.defaultLink} onClick={this.props.logout}>Выйти</Link>
+                    </li>
+                </ul>
+                : <ul className={style.defaultList}>
+                    <li className={style.navItem}><Link to="/login" className={style.defaultLink}>Войти</Link></li>
+                    <li className={style.navItem}><Link to="/registration" className={style.defaultLink}>Зарегистрироваться</Link></li>
+                </ul>;
+
         if (this.state.isSideDrawerOpened) {
-            backdrop = <Backdrop click={this.backdropClickHandler}/>;
+            backdrop = <Backdrop click={this.backdropClickHandler} />;
         }
         return (
           <header className={ classnames(style.toolbar, !this.state.isVisible && style.hidden) }>
               <nav className={style.toolbarNavigation}>
                   <div className={style.toggleButton}>
                       <DrawerToggleButton click={this.drawerToggleClickHandler}/>
-                      <SideDrawer click={this.drawerToggleClickHandler} show={this.state.isSideDrawerOpened}/>
-                      {backdrop}
+                      <SideDrawer click={this.drawerToggleClickHandler} show={this.state.isSideDrawerOpened} />
+                      { backdrop }
                   </div>
                   <div className={style.toolbarLogo}>
                       <Link className={style.logoLink} to="/" onClick={this.backdropClickHandler}>SKIMA</Link>
                   </div>
                   <div className={style.spacer}></div>
                   <div className={style.toolbarNavigationItems}>
-                      <ul className={style.defaultList}>
-                          <li className={style.navItem}><Link to="/login" className={style.defaultLink}>Войти</Link></li>
-                          <li className={style.navItem}><Link to="/registration" className={style.defaultLink}>Зарегистрироваться</Link></li>
-                      </ul>
+                      { headerContent }
                   </div>
               </nav>
           </header>

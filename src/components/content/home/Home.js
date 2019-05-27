@@ -41,8 +41,8 @@ export class Home extends Component {
                             </p>
                         </div>
                         <div className={style.startContainer}>
-                        <Link className={buttonStyle.startButton} to="/activities/1">
-                            Записаться на марафон
+                        <Link className={buttonStyle.startButton} to="/activities/">
+                            Посмотреть список марафонов
                         </Link>
                         </div>
                     </div>
