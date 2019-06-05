@@ -24,6 +24,9 @@ export class Login extends Component {
 
     onSubmit(event) {
         event.preventDefault();
+        const queryParams = new URLSearchParams(window.location.search);
+        const backUrl = queryParams.get('back_url');
+
         const options = {
             method: "POST",
             headers: {
@@ -38,7 +41,6 @@ export class Login extends Component {
         fetch(`https://www.skima.cf/v1/auth/tokens/`, options)
             .then(response => {
                 if (response.ok) {
-                    console.log(response);
                     return response.json();
                 }
                 else {
@@ -47,6 +49,7 @@ export class Login extends Component {
             })
             .then(response => {
                 this.props.login(response.token);
+                window.location.href = backUrl === null ? '/' : backUrl;
                 // localStorage.setItem('token', response.token);
                 // window.location.reload();
             })
@@ -56,6 +59,8 @@ export class Login extends Component {
     }
 
     render() {
+        const queryParams = new URLSearchParams(window.location.search);
+        const backUrl = queryParams.get('back_url');
         return(
             <div className={style.mainContainer}>
                 <div className={style.main}>

@@ -2,13 +2,14 @@ import React, {Component} from 'react';
 import style from './marathon.module.css';
 import buttonStyle from '../../../defaultStyles/buttons.module.css';
 import { Accordion } from "../../accordion/Accordion";
+import {Link} from "react-router-dom";
+import jwt_decode from 'jwt-decode';
 
-/**
- * Work on this component in progress
- */
 export class Marathon extends Component {
     constructor(props) {
         super(props);
+
+        this.onParticipateClick = this.onParticipateClick.bind(this);
 
         this.state = {
             name: '',
@@ -16,6 +17,7 @@ export class Marathon extends Component {
             startAt: '',
             endAt: '',
             sprints: [],
+            buttonState: 0,
         }
     }
 
@@ -27,14 +29,13 @@ export class Marathon extends Component {
             }
         };
 
-        fetch(`https://www.skima.cf/v1/maraphones/5cd84e0fce90c810c920dd73`, options)
+        fetch(`https://www.skima.cf/v1/maraphones/5cf61b70f7fa4760136b7f21`, options)
             .then(response =>
                 response.json())
             .then(response => {
-                // console.log(response);
                 this.setState({
                     name: response.title,
-                    description: response.description,
+                    descr: response.description,
                     sprints: response.sprints,
                 })
             })
@@ -42,17 +43,64 @@ export class Marathon extends Component {
                 console.log(error);
             });
 
+        fetch(`https://www.skima.cf/v1/activities/5cf61c15f7fa4760136b7f85`, options)
+            .then(response => {
+                if (response.ok) {
+                    console.log(response);
+                    return response.json();
+                }
+            })
+            .then(response => {
+                this.setState({
+                    startAt: response.startAt,
+                    // endAt: response.endAt,
+                })
+            });
     }
 
     getMarathonName() {
         return this.state.name;
     }
 
+    getActivityStartTime() {
+        return this.state.startAt;
+    }
+    getActivityEndTIme() {
+        return this.state.endAt;
+    }
+
+    onParticipateClick() {
+        const user = localStorage.getItem('token');
+        let decoded = jwt_decode(user);
+
+        const options = {
+            method: "POST",
+            headers: {
+                "Authorization": "Bearer" + ' ' + localStorage.getItem('token'),
+                "Content-Type": "application/json",
+            },
+            body:
+                JSON.stringify({
+                    'activityId': '5cf61c15f7fa4760136b7f85',
+                })
+        };
+
+        fetch('https://www.skima.cf/v1/entries', options)
+            .then(response => {
+                if (response.ok) {
+                    this.setState({
+                        buttonState: 1,
+                    })
+                }
+            })
+    }
+
     getMarathonDescription() {
-        return 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n' +
-            'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n' +
-            'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\n' +
-            'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum';
+        return this.state.descr;
+        // return 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n' +
+        //     'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n' +
+        //     'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\n' +
+        //     'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum';
     }
 
     getMarathonSprints() {
@@ -159,7 +207,6 @@ export class Marathon extends Component {
     // }
 
     renderSprints() {
-        // console.log(this.state.sprints[1]);
         let sprints = this.state.sprints;
 
         return sprints.map(function(sprint) {
@@ -181,7 +228,19 @@ export class Marathon extends Component {
         );
     }
 
+    renderParticipationButton() {
+        return (
+            <button onClick={this.onParticipateClick} className={buttonStyle.defaultButton}>Участвовать</button>
+        );
+    }
+
     render() {
+        let buttonView =
+            this.props.isLogin === true ?
+                <button onClick={this.onParticipateClick} className={buttonStyle.defaultButton}>Участвовать</button>
+            :
+                <Link to={"/login/?back_url=/activities/1"}
+                      className={buttonStyle.defaultButton}>Участвовать</Link>;
         return (
           <div className={style.mainContainer}>
               <div className={style.content}>
@@ -189,11 +248,11 @@ export class Marathon extends Component {
                       <div className={style.head}>
                         <h1 className={style.nameHeader}>{ this.getMarathonName() }</h1>
                           <div>
-                              <button className={buttonStyle.defaultButton}>Участвовать</button>
+                              { buttonView }
                           </div>
                       </div>
                       <div>
-                          Марафон будет проходить с хх.хх.хххх до уу.уу.уууу
+                          Марафон будет проходить { this.getActivityStartTime() }
                       </div>
                   </div>
                   <div className={style.description}>

@@ -36,7 +36,6 @@ export class App extends Component {
         let token = localStorage.getItem('token');
         if (token !== null) {
             let decoded = jwt_decode(token);
-            console.log(decoded);
             if (decoded.exp < Date.now() / 1000) {
                 localStorage.clear();
                 this.setState({
@@ -44,7 +43,6 @@ export class App extends Component {
                 });
             }
             else {
-                console.log('token is fresh as air');
                 this.setState({
                     isAuthorized: true,
                 });
@@ -87,7 +85,7 @@ export class App extends Component {
                     <Route exact path='/activities'
                            component={() => <Activities />} />
                     <Route path='/activities/1'
-                           render={() => <Marathon />} />
+                           render={() => <Marathon isLogin={this.state.isAuthorized} />} />
                 </Switch>
             </Layout>
         );

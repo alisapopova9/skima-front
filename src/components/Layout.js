@@ -9,7 +9,6 @@ export class Layout extends Component {
     }
 
     render() {
-        console.log('layout render ' + this.props.isLogin);
         return (
             <div>
                 <Header isAuthorized={this.props.isLogin} logout={this.props.logout}/>
