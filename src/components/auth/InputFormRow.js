@@ -28,7 +28,8 @@ export class InputFormRow extends Component {
             <div className={inputStyle.inputFormRow} onClick={this.handleClick}>
                 <label className={inputStyle.defaultLabel}>{label}</label>
                 <div className={style.inputContainer}>
-                    <input className={inputStyle.defaultInput} {...rest} ref={r => this.myRef = r} placeholder={this.props.placeholder} onFocus={this.onFocus} />
+                    { this.props.flag === "area" ? (<textarea rows="10" cols="40" ref={r => this.myRef = r} className={inputStyle.defaultTextArea}></textarea>)
+                        : (<input className={inputStyle.defaultInput} {...rest} ref={r => this.myRef = r} placeholder={this.props.placeholder} onFocus={this.onFocus} />)}
                     <div className={classnames(style.errorContainer, style.hidden, style.error)} id={'error-' + this.props.id}></div>
                 </div>
             </div>

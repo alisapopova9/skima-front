@@ -1,5 +1,4 @@
 .defaultInput {
-    width: 350px;
     padding: 0 10px;
     line-height: 20px;
     height: 40px;
@@ -9,6 +8,11 @@
     border: 1px solid #cd4f01;
     -webkit-box-shadow: 0 0 4px 0 #cd4f01;
     box-shadow: 0 0 4px 0 #cd4f01;
+}
+
+.defaultTextArea {
+    min-height: 100px;
+    max-height: 200px;
 }
 
 .errorInput {
@@ -21,14 +25,13 @@
     cursor: pointer;
     font-size: 17px;
     line-height: 18px;
-    width: 100px;
     height: 20px;
 }
 
 .inputFormRow {
-    display: flex;
+    display: grid;
+    grid-template-columns: 100px 2fr;
     width: 100%;
-    justify-content: space-around;
 }
 .inputFormRow:not(:last-of-type) {
     margin-bottom: 20px;
@@ -54,6 +57,6 @@
 
 @media (min-width: 769px) {
     .defaultInput {
-        width: 250px;
+        width: 270px;
     }
 }

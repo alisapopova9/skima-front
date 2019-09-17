@@ -148,15 +148,14 @@ export class Registration extends Component {
                     'password': this.state.password,
                     'firstname': this.state.firstname,
                     'lastname': this.state.lastname,
-                    'phone': this.state.phone,
+                    'privilege': 'default',
                 })
         };
 
         if (isDataOk) {
-            fetch('https://www.skima.cf/v1/users', options)
+            fetch('/api/users/signup', options)
                 .then(function (response) {
                     if (response.ok) {
-                        // console.log(response);
                         return response.json();
                     }
                     else {
@@ -164,10 +163,7 @@ export class Registration extends Component {
                     }
                 })
                 .then(userData => {
-                    // this.renderCongratsModal();
                     this.toggleModal();
-                    // window.location.href = '/';
-                    console.log(userData);
                 })
                 .catch(error => {
                     this.setState({validationState: false});

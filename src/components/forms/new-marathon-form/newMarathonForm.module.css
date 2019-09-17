@@ -1,0 +1,54 @@
+.container {
+    display: flex;
+    /*align-content: center;*/
+    flex-direction: column;
+    box-sizing: border-box;
+    background: rgba(33, 24, 69, 1);
+    min-height: 100vh;
+    width: 100%;
+    padding: 68px 8rem 68px 8rem;
+}
+
+.content {
+    margin-top: 20px;
+    padding: 10px 20px 10px 20px;
+    background-color: white;
+}
+
+.formContainer {
+    display: grid;
+
+}
+
+.loginContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    box-sizing: border-box;
+    /*padding: 20px;*/
+    color: black;
+}
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 15px 15px;
+    /*box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);*/
+}
+
+.buttonBox {
+    /*margin-top: 10px;*/
+}
+
+@media (max-width: 400px) {
+    .loginContainer {
+        margin: 0 2rem 0 2rem;
+    }
+}

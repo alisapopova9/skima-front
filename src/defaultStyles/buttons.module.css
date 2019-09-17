@@ -3,7 +3,7 @@
     text-decoration: none;
     cursor: pointer;
     background: #cd4f01;
-    border-radius: 5px;
+    /*border-radius: 5px;*/
     padding: 10px 20px;
     color: white;
     transition: .3s;
@@ -30,7 +30,7 @@
     text-decoration: none;
     cursor: pointer;
     background: #cd4f01;
-    border-radius: 5px;
+    /*border-radius: 5px;*/
     height: 45px;
     /*line-height: 40px;*/
     padding: 10px 20px;

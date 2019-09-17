@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import style from './marathon.module.css';
+import style from './marathonPage.module.css';
 import buttonStyle from '../../../defaultStyles/buttons.module.css';
 import { Accordion } from "../../accordion/Accordion";
 import {Link} from "react-router-dom";
 import jwt_decode from 'jwt-decode';
 
-export class Marathon extends Component {
+export class MarathonPage extends Component {
     constructor(props) {
         super(props);
 
@@ -24,12 +24,12 @@ export class Marathon extends Component {
     componentDidMount() {
         const options = {
             method: "GET",
-            headers: {
-                "Authorization": "Bearer" + ' ' + localStorage.getItem('token'),
-            }
+            // headers: {
+            //     "Authorization": "Bearer" + ' ' + localStorage.getItem('token'),
+            // }
         };
 
-        fetch(`https://www.skima.cf/v1/maraphones/5cf61b70f7fa4760136b7f21`, options)
+        fetch('/api/marathon', options)
             .then(response =>
                 response.json())
             .then(response => {
@@ -38,24 +38,34 @@ export class Marathon extends Component {
                     descr: response.description,
                     sprints: response.sprints,
                 })
-            })
-            .catch(error => {
-                console.log(error);
             });
-
-        fetch(`https://www.skima.cf/v1/activities/5cf61c15f7fa4760136b7f85`, options)
-            .then(response => {
-                if (response.ok) {
-                    console.log(response);
-                    return response.json();
-                }
-            })
-            .then(response => {
-                this.setState({
-                    startAt: response.startAt,
-                    // endAt: response.endAt,
-                })
-            });
+        // fetch(`https://www.skima.cf/v1/maraphones/5cf61b70f7fa4760136b7f21`, options)
+        //     .then(response =>
+        //         response.json())
+        //     .then(response => {
+        //         this.setState({
+        //             name: response.title,
+        //             descr: response.description,
+        //             sprints: response.sprints,
+        //         })
+        //     })
+        //     .catch(error => {
+        //         console.log(error);
+        //     });
+        //
+        // fetch(`https://www.skima.cf/v1/activities/5cf61c15f7fa4760136b7f85`, options)
+        //     .then(response => {
+        //         if (response.ok) {
+        //             console.log(response);
+        //             return response.json();
+        //         }
+        //     })
+        //     .then(response => {
+        //         this.setState({
+        //             startAt: response.startAt,
+        //             // endAt: response.endAt,
+        //         })
+        //     });
     }
 
     getMarathonName() {
@@ -211,7 +221,7 @@ export class Marathon extends Component {
 
         return sprints.map(function(sprint) {
             return (
-                    <div key={sprint.number} id={sprint.number} label={sprint.title} className={style.sprint}>
+                    <div key={sprint.number} id={sprint.number} label={sprint.name} className={style.sprint}>
                         {/*<h4 className={style.sprintName}>{sprint.name}</h4>*/}
                         <div>
                             {sprint.description}

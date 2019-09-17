@@ -1,6 +1,7 @@
 .container {
     display: flex;
-    align-content: center;
+    /*align-content: center;*/
+    flex-direction: column;
     box-sizing: border-box;
     background: rgba(33, 24, 69, 1);
     min-height: 100vh;
@@ -9,17 +10,30 @@
     cursor: default;
 }
 
-.marathonContainer {
+.createMarathonContainer {
     display: flex;
-    flex-wrap: wrap;
+    justify-content: flex-end;
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 1280px;
+    width: 100%;
+}
+
+.marathonContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    /*display: flex;*/
+    /*flex-wrap: wrap;*/
     justify-content: center;
-    box-sizing: border-box;
+    /*box-sizing: border-box;*/
     height: 100%;
     max-width: 1280px;
     width: 100%;
     margin-right: auto;
     margin-left: auto;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .marathon {
@@ -31,17 +45,17 @@
     padding: 20px;
     background: white;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-    margin-top: 20px;
-   margin-right: 10px;
-    margin-left: 10px;
+    /*margin-top: 20px;*/
+   /*margin-right: 10px;*/
+    /*margin-left: 10px;*/
 }
 
-@media (min-width: 200px) and (max-width: 480px) {
+@media (min-width: 200px) and (max-width: 760px) {
     .container {
         padding: 68px 4rem;
     }
     .marathonContainer {
-        flex-direction: column;
+        grid-template-columns: repeat(1, 1fr);
     }
     .marathon {
         width: 100%;
